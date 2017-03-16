@@ -2,10 +2,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <span class="copyright">Copyright &copy; {{ site.title }} {{ 'now' | date: "%Y" }}</span>
+                    <span class="copyright wow slideInLeft">Copyright &copy; {{ site.title }} {{ 'now' | date: "%Y" }}</span>
                 </div>
                 <div class="col-md-4">
-                    <ul class="list-inline social-buttons">
+                    <ul class="list-inline social-buttons wow slideInUp">
                         {% for network in site.social %}
                         <li><a href="{{ network.url }}"><i class="fa fa-{{ network.title }}"></i></a>
                         </li>
@@ -13,7 +13,7 @@
                     </ul>
                 </div>
                 <div class="col-md-4">
-                    <ul class="list-inline quicklinks">
+                    <ul class="list-inline quicklinks wow slideInRight">
                         <li><a href="#">Privacy Policy</a>
                         </li>
                         <li><a href="#">Terms of Use</a>
