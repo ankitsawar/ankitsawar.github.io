@@ -9,7 +9,9 @@ body {
     font-family: "Roboto Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
     color: #{{ site.data.template.color.secondary-dark }};
 }
-
+nav.navbar,.navbar-default,.navbar-fixed-top{
+    box-shadow: none;
+}
 .text-muted {
     color: #{{ site.data.template.color.muted }};
 }
@@ -233,6 +235,13 @@ fieldset[disabled] .btn-xl.active {
     color: #fff;
     background-color: #{{ site.data.template.color.secondary }};
 }
+h4.desc-head{
+    font-weight:700;
+}
+
+p.desc{
+    font-family: "Roboto Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
 
 @media(min-width:768px) {
     .navbar-default {
@@ -332,6 +341,7 @@ section h2.section-heading {
     margin-top: 0;
     margin-bottom: 15px;
     font-size: 40px;
+    font-weight: 700;
 }
 
 section h3.section-subheading {
@@ -538,6 +548,7 @@ section h3.section-subheading {
 
 .timeline .timeline-heading h4.subheading {
     text-transform: none;
+    font-weight: 700;
 }
 
 .timeline .timeline-body>p,
