@@ -298,6 +298,7 @@ header .intro-text .intro-lead-in {
     font-size: 22px;
     font-style: italic;
     line-height: 22px;
+    color:#00c8aa;
 }
 
 header .intro-text .intro-heading {
@@ -307,6 +308,43 @@ header .intro-text .intro-heading {
     font-size: 50px;
     font-weight: 700;
     line-height: 50px;
+    color:#00c8aa;
+}
+.intro-text a{
+    animation-name: bg-colors-change;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
+    
+    letter-spacing: 1.5px;
+}
+@keyframes bg-colors-change {
+    from {background-color: #009688;}
+    to {background-color: #40484a;}
+}
+.intro-text .intro-lead-in, .intro-text .intro-heading{
+    animation-name: texts-colors-change;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-out;
+    animation-direction: alternate;
+}
+@keyframes texts-colors-change {
+    from {color: #00c8aa;}
+    to {color: #40484a;}
+}
+.fa-stack-2x{
+    animation-name: colors-change;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-out;
+    animation-direction: alternate;
+    animation-delay: 2s;
+}
+@keyframes colors-change {
+    from {color: #009688;}
+    to {color: #40484a;}
 }
 
 @media(min-width:768px) {
