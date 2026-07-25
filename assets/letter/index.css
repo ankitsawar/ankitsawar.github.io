@@ -1,0 +1,444 @@
+html { 
+   height: 100%; 
+   overflow: hidden;
+}
+
+body { 
+   background: black; 
+   margin: 0; 
+   width: 100%; 
+   height: 100%; 
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.mobile-warning {
+   display: none;
+   width: 100%;
+   min-height: 100vh;
+   box-sizing: border-box;
+   background: #111;
+   color: #fff;
+   font-family: "Montserrat", sans-serif;
+   text-align: center;
+   padding: 32px;
+   align-items: center;
+   justify-content: center;
+}
+.mobile-warning .message-box {
+   max-width: 420px;
+   margin: 0 auto;
+   padding: 26px 22px;
+   border: 2px solid rgba(255,255,255,0.18);
+   border-radius: 18px;
+   background: rgba(0,0,0,0.85);
+   box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+}
+.mobile-warning .message-box p {
+   margin: 0;
+   font-size: 18px;
+   line-height: 1.6;
+}
+
+@media (max-width: 1080px) {
+   .scene {
+      display: none;
+   }
+   .mobile-warning {
+      display: flex;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+   }
+}
+
+.scene {
+   width: 480px;
+   height: 640px;
+   margin: 16px auto;
+   -webkit-perspective: 2000px;
+   perspective: 2000px;
+}
+
+/* framed scene look */
+.scene {
+   /* border-radius: 18px; */
+   /* background: radial-gradient(1200px 600px at 10% 10%, rgba(255,255,255,0.02), transparent), linear-gradient(180deg,#2b2b2b,#1f1f1f);
+   padding: 18px;
+   box-shadow: 0 30px 60px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.02); */
+}
+
+.book {
+   position: relative;
+   width: 100%;
+   height: 100%;
+   -webkit-transform-style: preserve-3d;
+   transform-style: preserve-3d;
+   /* background-color: #1CA9C9; */
+}
+
+.page {
+   cursor: pointer;
+   position: absolute;
+   color: black;
+   width: 100%;
+   height: 100%;
+   -webkit-transition: 1.5s -webkit-transform;
+   transition: 1.5s transform;
+   -webkit-transform-style: preserve-3d;
+   transform-style: preserve-3d;  
+   -webkit-transform-origin: left center;  
+   -ms-transform-origin: left center;  
+   transform-origin: left center;
+   
+}
+
+.front,
+.back {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   -webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+   box-sizing: border-box;
+   -webkit-backface-visibility: hidden;
+   backface-visibility: hidden;
+   /* background: -webkit-gradient(linear, 0% 0%, 100% 100%, from(#FFFFFF), to(#CCCCCC));
+   background: -webkit-gradient(linear, left top, right bottom, from(#fff), to(#ccc));
+   background: -webkit-linear-gradient(top left, #fff, #ccc);
+   background: linear-gradient(to bottom right, #fff, #ccc); */
+   /* background-color: #1CA9C9; */
+   background: linear-gradient(160deg, #4A90C9 0%, #16495E 100%);
+}
+.back {
+   -webkit-transform: rotateY(180deg);
+   transform: rotateY(180deg);
+}
+
+.page.active {
+   z-index: 1;
+}
+.page-nav-hint {
+   position: absolute;
+   right: 18px;
+   bottom: 18px;
+   width: 36px;
+   height: 36px;
+   border-radius: 50%;
+   border: 1px solid #fff;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background: transparent;
+   color: #fff;
+   font-size: 16px;
+   font-weight: 700;
+   box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+   pointer-events: none;
+}
+.page.flipped {
+   -webkit-transform: rotateY(-180deg);
+   transform: rotateY(-180deg);
+}
+.page.flipped:last-of-type {
+   z-index: 1;
+}
+
+p {
+   margin: 0;
+}
+
+.start {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   color: #fff
+}
+
+.h-100 {
+   height: 100%;
+}
+
+.page .front, .page .back {
+   padding: 40px 25px;
+}
+
+.start .page-1 .book-title {
+   font-size: 45px;
+   font-family: "Kaushan Script", cursive;
+   font-weight: 400;
+   font-style: normal;
+   text-align: left;
+   margin: 0;
+   line-height: 50px;
+   margin-bottom: 10px;
+   text-shadow: rgba(53, 91, 122, 0.18);
+}
+
+.start .page-1 .book-subtitle {
+   font-size: 22px;
+   font-family: "Kaushan Script", cursive;
+   font-weight: 400;
+   font-style: normal;
+   text-align: center;
+   line-height: 28px;
+   color: #fff;
+}
+.page p {
+   font-size: 15px;
+   font-family: "Montserrat", sans-serif;
+   font-optical-sizing: auto;
+   font-style: italic;
+   font-weight: 300;
+   /* font-style: normal; */
+   text-align: left;
+   line-height: 22px;
+   color: #fff;
+   padding-bottom: 10px;
+   text-indent: 20px;
+}
+
+/* Scrapbook-style collage for selected snippet only */
+.collage {
+   position: relative;
+   width: 100%;
+   height: calc(100% - 44px);
+   box-sizing: border-box;
+}
+.collage .photo{
+   position: absolute;
+   border-radius: 6px;
+   border: 4px solid #fff;
+   background: #111;
+   box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+   overflow: hidden;
+}
+.collage .photo img{ display:block; width:100%; height:100%; object-fit:cover; }
+.collage .photo.p1{ left:0%; top:6%; width:auto; height:38%; transform: rotate(-8deg); z-index:4; }
+ .collage .photo.p2{ right:0%; top:6%; width:auto; height:38%; transform: rotate(8deg); z-index:5; }
+ .collage .photo.p3{ left:0%; top:60%; width:auto; height:38%; transform: rotate(-8deg); z-index:3; }
+ .collage .photo.p4{ right:-2%; top:60%; width:auto; height:38%; transform: rotate(8deg); z-index:6; }
+
+/* Selected snippet collage style only */
+.selected-grid {
+   position: relative;
+   width: 100%;
+   height: 100%;
+   box-sizing: border-box;
+   padding: 0;
+}
+.selected-grid .photo {
+   position: absolute;
+   border-radius: 6px;
+   border: 4px solid #fff;
+   background: #111;
+   box-shadow: 0 22px 45px rgba(0,0,0,0.35);
+   overflow: hidden;
+}
+.selected-grid .photo img {
+   display: block;
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+}
+.selected-grid .photo.p1 {
+   top: 0%;
+   left: 0%;
+   width: 56%;
+   height: 60%;
+   transform: rotate(-8deg);
+   z-index: 4;
+}
+.selected-grid .photo.p2 {
+   top: 30%;
+   right: 5%;
+   width: 50%;
+   height: 70%;
+   transform: rotate(8deg);
+   z-index: 5;
+}
+.selected-grid .photo::before {
+   content: "";
+   position: absolute;
+   width: 60px;
+   height: 12px;
+   background: rgba(80,60,40,0.75);
+   top: -8px;
+   left: 16px;
+   transform: rotate(-7deg);
+   border-radius: 3px;
+   box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+   pointer-events: none;
+}
+.selected-grid .photo.p2::before {
+   left: auto;
+   right: 16px;
+   transform: rotate(6deg);
+}
+
+/* Selected snippet collage style only */
+.snippet-collage {
+   position: relative;
+   width: 100%;
+   height: 100%;
+   box-sizing: border-box;
+}
+.snippet-collage .photo {
+   position: absolute;
+   border-radius: 6px;
+   border: 4px solid #fff;
+   background: #111;
+   box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+   overflow: hidden;
+}
+.snippet-collage .photo img {
+   display: block;
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+}
+.snippet-collage .photo.p1 {
+   left: 0%;
+   top: 0%;
+   width: auto;
+   height: 30%;
+   transform: rotate(-8deg);
+   z-index: 4;
+}
+.snippet-collage .photo.p2 {
+   right: 0%;
+    top: 12%;
+    width: auto;
+    height: 35%;
+    transform: rotate(8deg);
+    z-index: 5;
+}
+.snippet-collage .photo.p3 {
+   left: 0%;
+   bottom: 0%;
+   width: auto;
+   height:35%;
+   transform: rotate(8deg);
+   z-index: 3;
+}
+.snippet-collage .photo.p4 {
+   right: 0%;
+   bottom: 8%;
+   width: auto;
+   height: 35%;
+   transform: rotate(-6deg);
+   z-index: 6;
+}
+.snippet-collage .photo::before {
+   content: "";
+   position: absolute;
+   width: 56px;
+   height: 12px;
+   background: rgba(70,42,30,0.7);
+   top: -8px;
+   left: 14px;
+   transform: rotate(-8deg);
+   border-radius: 3px;
+   box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+   pointer-events: none;
+}
+.snippet-collage .photo.p2::before {
+   left: auto;
+   right: 14px;
+   transform: rotate(6deg);
+}
+.snippet-collage .photo.p4::before {
+   left: auto;
+   right: 18px;
+   transform: rotate(10deg);
+}
+
+/* Isolated three-image collage for selected blank snippet */
+.three-photo-collage {
+   position: relative;
+   width: 100%;
+   height: 100%;
+   box-sizing: border-box;
+}
+.three-photo-collage .photo {
+   position: absolute;
+   border-radius: 6px;
+   border: 4px solid #fff;
+   background: #111;
+   box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+   overflow: hidden;
+}
+.three-photo-collage .photo img {
+   display: block;
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+}
+.three-photo-collage .photo.p1 {
+   left: 0%;
+   top: 0%;
+   width: 52%;
+   height: 55%;
+   transform: rotate(-8deg);
+   z-index: 4;
+}
+.three-photo-collage .photo.p2 {
+   right: 0%;
+   top: 1%;
+   width: 48%;
+   height: 55%;
+   transform: rotate(8deg);
+   z-index: 5;
+}
+.three-photo-collage .photo.p3 {
+   left: 20%;
+   bottom: 0%;
+   width: 60%;
+   height: 55%;
+   transform: rotate(8eg);
+   z-index: 3;
+}
+.three-photo-collage .photo::before {
+   content: "";
+   position: absolute;
+   width: 56px;
+   height: 12px;
+   background: rgba(70,42,30,0.7);
+   top: -8px;
+   left: 14px;
+   transform: rotate(-8deg);
+   border-radius: 3px;
+   box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+   pointer-events: none;
+}
+.three-photo-collage .photo.p2::before {
+   left: auto;
+   right: 14px;
+   transform: rotate(6deg);
+}
+
+/* decorative tape pieces */
+.collage .photo::before{
+   content: "";
+   position: absolute;
+   width: 56px;
+   height: 12px;
+   background: rgba(70,42,30,0.7);
+   top: -8px;
+   left: 14px;
+   transform: rotate(-8deg);
+   border-radius: 3px;
+   box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+   pointer-events: none;
+}
+.collage .photo.p2::before{ left: auto; right: 14px; transform: rotate(6deg); }
+.collage .photo.p4::before{ left: auto; right: 18px; transform: rotate(10deg); }
+
+
+.bold {
+   font-weight: 500;
+   font-size: 16px;
+   font-style: normal;
+   font-family: "Kaushan Script", cursive;
+}
